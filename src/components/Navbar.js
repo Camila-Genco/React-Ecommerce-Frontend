@@ -7,21 +7,23 @@ import {MdFavorite, MdHelp} from "react-icons/md"
 import {FaWallet, FaUserFriends} from "react-icons/fa"
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import authSlice from '../store/authSlice'
 
 
 export const Navbar = () => {
     const [nav, setNav] = useState(false)
     const quantity = useSelector((state )=> state.cart.totalQuantity)
     const navigate = useNavigate();
+    const user = useSelector(state => state.auth.user);
 
-
+    console.log(user);
   return (
     <header className='max-w-[1640px] m-auto flex justify-between items-center p-4 sticky top-0 z-50 bg-primary-color'>
         <div className='flex items-center'>
         <div onClick={() => setNav(!nav)} className='cursor-pointer'>
             <AiOutlineMenu size={20} className='text-white'/>
         </div>
-        <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 text-white'>Best <span className='font-bold'>Eats</span></h1>
+        <h1 className='text-2xl sm:text-3xl lg:text-4xl px-2 text-white'>Best <span className='font-bold' onClick={()=> navigate("/")}>Eats</span></h1>
         <div className='hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
             <p className='bg-black text-white rounded-full p-2'>Delivery</p>
             <p className='p-2'>Pickup</p>
@@ -32,7 +34,7 @@ export const Navbar = () => {
            <AiOutlineSearch size={20}/> 
            <input className='bg-transparent p-2 w-full focus:outline-none' type='text' placeholder='Search foods'/>
         </div>
-
+        <button onClick={()=> navigate("/login")}>Login</button>
         <button className='bg-white text-black hidden md:flex items-center py-2 px-4 rounded-full' onClick={()=> navigate("/cart")}>
             <BsFillCartFill sixe={20} className='mr-2'/> 
             <span>{quantity}</span>

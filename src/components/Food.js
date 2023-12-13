@@ -1,42 +1,61 @@
 import React, { useState } from 'react'
-import {data} from "../data/data.js"
+
 import {IoMdAddCircle} from "react-icons/io"
 import {useDispatch} from "react-redux"
 import { cartActions } from '../store/cartSlice.js'
 import { Modal } from './Modal.js'
+import useFetch from '../hooks/useFetch.js'
+import { BASE_URL } from '../utils/config.js'
+import { useEffect } from 'react'
 
 export const Food = () => {
-    const [foods, setFoods] = useState(data);
+    const {data, loading, error} = useFetch(`${BASE_URL}products`);
+    const [foods, setFoods] = useState([]);
     const dispatch = useDispatch()
-
     const [selectedFood, setSelectedFood] = useState(null);
     const [showModal, setShowModal] = useState(false);
+    const [filteredFoods, setFilteredFoods] = useState([]);
 
+    //Poblate food data
+    useEffect(() => {
+        if (data) {
+          setFoods(data);
+          setFilteredFoods(data)
+        }
+      }, [data]);
+
+    //Modal
     const handleFood = (food) => {
         setSelectedFood(food);
         setShowModal(true);
     };
 
-
+  
     const addToCart = (id, name, image, category, exactPrice, quantity) => {
     dispatch(cartActions.addToCart({id, name, image, category, exactPrice, quantity}))
   }
    
+     //Filters
     const filterType = (category) => {
-        setFoods(
-            data.filter((item)=> {
-                return item.category === category;
-            })
-        )
+        const filtered = foods.filter((item) => item.categoryId === category);
+        setFilteredFoods(filtered);
     }
 
     const filterPrice = (price) => {
-        setFoods(
-            data.filter((item) =>{
-                return item.price === price;
-            })
-        )
-    }
+        let filtered = [];      
+        switch (price) {
+          case "$":
+            filtered = foods.filter((food) => food.price < 10);
+            break;
+          case "$$":
+            filtered = foods.filter((food) => food.price > 10 && food.price < 12);
+            break;
+          default:
+            filtered = foods.filter((food) => food.price > 12);
+            break;
+        }
+        setFilteredFoods(filtered);
+      };
 
   return (
     <div className='max-w-[1640] m-auto px-4 py-12'>
@@ -44,33 +63,31 @@ export const Food = () => {
         <div className='flex flex-col lg:flex-row justify-between'>
             <div>
                 <p className='font-bold text-gray-700 mx-2'>Filter by Type</p>
-                <div className='flex justify-between flex-wrap'>
-                    <button onClick={()=>setFoods(data)} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>All</button>
-                    <button onClick={()=> filterType("burger")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>Burgers</button>
-                    <button onClick={()=> filterType("pizza")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>Pizzas</button>
-                    <button onClick={()=> filterType("salad")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>Salads</button>
-                    <button onClick={()=> filterType("chicken")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>Chicken</button>
+                <div className='flex justify-between flex-wrap filter'>
+                    <button onClick={()=>setFoods(foods)}>All</button>
+                    <button onClick={()=> filterType(1)}>Burgers</button>
+                    <button onClick={()=> filterType(2)}>Pizzas</button>
+                    <button onClick={()=> filterType(3)}>Salads</button>
+                    <button onClick={()=> filterType(4)}>Chicken</button>
                 </div>
             </div>
             <div>
                 <p className='font-bold text-gray-700 mx-2'>Filter by Price</p>
-                <div className='flex justify-between max-w-[390px] w-full'>
-                    <button onClick={()=> filterPrice("$")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$</button>
-                    <button onClick={()=> filterPrice("$$")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$</button>
-                    <button onClick={()=> filterPrice("$$$")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$$</button>
-                    <button onClick={()=> filterPrice("$$$$")} className='m-1 border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white'>$$$$</button>
+                <div className='flex justify-between max-w-[390px] w-full filter'>
+                    <button onClick={()=> filterPrice("$")}>$</button>
+                    <button onClick={()=> filterPrice("$$")}>$$</button>
+                    <button onClick={()=> filterPrice("$$$")}>$$$</button>
                 </div>
             </div>
         </div>
 
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
-            {foods.map((item, index) => (
+            {filteredFoods.map((item, index) => (
                 <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
-                    <img src={item.image} alt={item.name} className='w-full h-[200px] object-cover rounded-t-lg'/>
+                    <img src={item.img} alt={item.img} className='w-full h-[200px] object-cover rounded-t-lg'/>
                     <div className='flex justify-between px-2 py-4'>
                         <p className='font-bold'>{item.name}</p>
-                        <span className='bg-gray-200 rounded px-4'>${item.exactPrice}</span>
-                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={(e) => {addToCart(item.id, item.name, item.image, item.category, item.exactPrice, item.quantity); handleFood(item)}}/>
+                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={(e) => {addToCart(item.id, item.name, item.img,  item.price); handleFood(item)}}/>
                     </div>
                 </div>
             ))}

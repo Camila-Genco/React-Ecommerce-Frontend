@@ -6,4 +6,7 @@
   button {
     @apply text-white rounded focus:outline-none;
   }
+  .filter button {
+    @apply m-1 px-2 py-1 rounded-full border border-orange-600 text-orange-600 hover:bg-orange-600 hover:text-white
+  }
 }
