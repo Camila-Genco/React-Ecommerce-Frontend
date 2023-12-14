@@ -4,19 +4,19 @@ import {AiFillTag, AiOutlineClose, AiOutlineMenu, AiOutlineSearch} from "react-i
 import {BsFillCartFill, BsFillSaveFill} from "react-icons/bs"
 import {TbTruckDelivery} from "react-icons/tb"
 import {MdFavorite, MdHelp} from "react-icons/md"
-import {FaWallet, FaUserFriends} from "react-icons/fa"
-import { useSelector } from 'react-redux'
+import {FaWallet, FaUserFriends, FaUserCheck} from "react-icons/fa"
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import authSlice from '../store/authSlice'
-
+import {logout} from '../store/authSlice'
 
 export const Navbar = () => {
     const [nav, setNav] = useState(false)
     const quantity = useSelector((state )=> state.cart.totalQuantity)
     const navigate = useNavigate();
     const user = useSelector(state => state.auth.user);
+    const dispatch = useDispatch();
 
-    console.log(user);
+    console.log(user? "user": "no user");
   return (
     <header className='max-w-[1640px] m-auto flex justify-between items-center p-4 sticky top-0 z-50 bg-primary-color'>
         <div className='flex items-center'>
@@ -34,9 +34,19 @@ export const Navbar = () => {
            <AiOutlineSearch size={20}/> 
            <input className='bg-transparent p-2 w-full focus:outline-none' type='text' placeholder='Search foods'/>
         </div>
-        <button onClick={()=> navigate("/login")}>Login</button>
+        {
+            user? 
+            <div className='flex items-center gap-4'>
+                <FaUserCheck size={25} className='text-orange-500'/> 
+                <button onClick={()=> {navigate("/"); dispatch(logout())}} className='p-2 bg-transparent border-white border'>Logout</button>
+            </div> :
+            <div className='flex gap-4'>
+                <button onClick={()=> navigate("/login")} className='p-2 bg-orange-500 hover:bg-orange-600'>Login</button>
+                <button onClick={()=> navigate("/register")} className='p-2 bg-transparent border-orange-500 border text-orange-500'>Register</button>
+            </div>
+        }
         <button className='bg-white text-black hidden md:flex items-center py-2 px-4 rounded-full' onClick={()=> navigate("/cart")}>
-            <BsFillCartFill sixe={20} className='mr-2'/> 
+            <BsFillCartFill size={20} className='mr-2'/> 
             <span>{quantity}</span>
         </button>
 

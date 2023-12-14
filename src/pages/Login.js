@@ -36,8 +36,8 @@ export const Login = () => {
         alert(result.message);
         dispatch(loginFailure(result.message));
       } else {
-        dispatch(loginSuccess(result.data));
-        console.log("Successful login");
+        dispatch(loginSuccess(result.token));
+        console.log(result);
         navigate("/")
       }
     } catch (err) {
