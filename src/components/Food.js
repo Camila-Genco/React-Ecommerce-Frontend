@@ -64,7 +64,7 @@ export const Food = () => {
             <div>
                 <p className='font-bold text-gray-700 mx-2'>Filter by Type</p>
                 <div className='flex justify-between flex-wrap filter'>
-                    <button onClick={()=>setFoods(foods)}>All</button>
+                    <button onClick={()=>setFilteredFoods(foods)}>All</button>
                     <button onClick={()=> filterType(1)}>Burgers</button>
                     <button onClick={()=> filterType(2)}>Pizzas</button>
                     <button onClick={()=> filterType(3)}>Salads</button>
