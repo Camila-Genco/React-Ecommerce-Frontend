@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
-
-import {IoMdAddCircle} from "react-icons/io"
-import {useDispatch} from "react-redux"
-import { cartActions } from '../store/cartSlice.js'
-import { Modal } from './Modal.js'
-import useFetch from '../hooks/useFetch.js'
-import { BASE_URL } from '../utils/config.js'
+import { useState } from 'react'
 import { useEffect } from 'react'
+
+import {useDispatch} from "react-redux"
+import {IoMdAddCircle} from "react-icons/io"
+
+import { BASE_URL } from '../utils/config.js'
+import { Modal } from './Modal.js'
+import { cartActions } from '../store/cartSlice.js'
+import useFetch from '../hooks/useFetch.js'
 
 export const Food = () => {
     const {data, loading, error} = useFetch(`${BASE_URL}products`);
     const [foods, setFoods] = useState([]);
-    const dispatch = useDispatch()
     const [selectedFood, setSelectedFood] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [filteredFoods, setFilteredFoods] = useState([]);
+    const dispatch = useDispatch()
 
     //Poblate food data
     useEffect(() => {
@@ -59,7 +60,7 @@ export const Food = () => {
 
   return (
     <div className='max-w-[1640] m-auto px-4 py-12'>
-        <h1 className='text-orange-600 font-bold text-4xl text-center pb-4'>Top Rated Menu Items</h1>
+        <h1 className='title'>Top Rated Menus</h1>
         <div className='flex flex-col lg:flex-row justify-between'>
             <div>
                 <p className='font-bold text-gray-700 mx-2'>Filter by Type</p>
@@ -83,11 +84,11 @@ export const Food = () => {
 
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
             {filteredFoods.map((item, index) => (
-                <div key={index} className='border shadow-lg rounded-lg hover:scale-105 duration-300'>
+                <div key={index} className='foodItem'>
                     <img src={item.img} alt={item.img} className='w-full h-[200px] object-cover rounded-t-lg'/>
                     <div className='flex justify-between px-2 py-4'>
                         <p className='font-bold'>{item.name}</p>
-                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={(e) => {addToCart(item.id, item.name, item.img,  item.price); handleFood(item)}}/>
+                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={(e) => {addToCart(item.id, item.name, item.img, item.price); handleFood(item)}}/>
                     </div>
                 </div>
             ))}
