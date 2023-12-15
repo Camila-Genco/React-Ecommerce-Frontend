@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 
-import {useDispatch} from "react-redux"
 import {IoMdAddCircle} from "react-icons/io"
 
 import { BASE_URL } from '../utils/config.js'
 import { Modal } from './Modal.js'
-import { cartActions } from '../store/cartSlice.js'
 import useFetch from '../hooks/useFetch.js'
 
 export const Food = () => {
@@ -15,7 +13,7 @@ export const Food = () => {
     const [selectedFood, setSelectedFood] = useState(null);
     const [showModal, setShowModal] = useState(false);
     const [filteredFoods, setFilteredFoods] = useState([]);
-    const dispatch = useDispatch()
+    
 
     //Poblate food data
     useEffect(() => {
@@ -31,11 +29,6 @@ export const Food = () => {
         setShowModal(true);
     };
 
-  
-    const addToCart = (id, name, image, category, exactPrice, quantity) => {
-    dispatch(cartActions.addToCart({id, name, image, category, exactPrice, quantity}))
-  }
-   
      //Filters
     const filterType = (category) => {
         const filtered = foods.filter((item) => item.categoryId === category);
@@ -88,7 +81,7 @@ export const Food = () => {
                     <img src={item.img} alt={item.img} className='w-full h-[200px] object-cover rounded-t-lg'/>
                     <div className='flex justify-between px-2 py-4'>
                         <p className='font-bold'>{item.name}</p>
-                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={(e) => {addToCart(item.id, item.name, item.img, item.price); handleFood(item)}}/>
+                        <IoMdAddCircle size={25} className='mr-4 text-orange-600 cursor-pointer' onClick={() => handleFood(item)}/>
                     </div>
                 </div>
             ))}

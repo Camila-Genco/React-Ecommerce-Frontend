@@ -44,7 +44,7 @@
     @apply block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-lg
   }
   .heroText {
-    @apply px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold
+    @apply px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-orange-500
   }
   .title {
     @apply text-orange-600 font-bold text-4xl text-center pb-4

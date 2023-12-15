@@ -46,7 +46,7 @@ export const Cart = () => {
         if(!res.ok){
           return alert(result.message)
         }
-        navigate("/");
+        navigate("/order");
     } catch (err) {
       alert(err.message)
     }

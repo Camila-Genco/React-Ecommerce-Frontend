@@ -5,8 +5,8 @@ export const HeadlineCards = () => {
     <div className='max-w-[1640px] mx-auto p-4 py-12 grid md:grid-cols-3 gap-6'>
         <div className='rounded-xl relative'>
             <div className='card'>
-                <p>Sun's Out, BOGO's Out</p>
-                <span>Through 8/26</span>
+                <p>Farm-Fresh Goodness</p>
+                <span>Delivered to Your Doorstep</span>
                 <button>Order Now</button>
             </div>
             <img className='cardImg' src='https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt=''/>

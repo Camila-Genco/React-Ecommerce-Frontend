@@ -1,10 +1,17 @@
 import React from 'react'
 import { FaStar } from 'react-icons/fa'
 import { IoMdAddCircle, IoMdClose } from 'react-icons/io'
+import {useDispatch} from "react-redux"
+import { cartActions } from '../store/cartSlice.js'
 
 export const Modal = ({setModal, food}) => {
 
-  const {name, img, price, description, rating} = food;
+  const {id, name, img, price, description, rating} = food;
+  const dispatch = useDispatch()
+
+  const addToCart = (id, name, image, category, exactPrice, quantity) => {
+    dispatch(cartActions.addToCart({id, name, image, category, exactPrice, quantity}))
+  }
 
   const closeModal = () => {
     setModal(false);
@@ -41,7 +48,7 @@ const renderStars = (rating) => {
               </div>
               <div className='flex justify-end text-orange-500 my-4'>
               <span>Add to cart</span>
-              <IoMdAddCircle size={25} className='mr-3 ml-2 cursor-pointer hover:text-orange-700'/>
+              <IoMdAddCircle size={25} className='mr-3 ml-2 cursor-pointer hover:text-orange-700' onClick={addToCart(id, name, img, price)}/>
               </div>
               </div>
         </div>        

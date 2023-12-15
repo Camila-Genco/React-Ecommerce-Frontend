@@ -1,9 +1,11 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
+
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Cart } from '../pages/Cart';
 import { Register } from '../pages/Register';
+import { Order } from '../pages/Order';
 
 
 export const Routers = () => {
@@ -13,6 +15,7 @@ export const Routers = () => {
         <Route strict path='/cart' element={<Cart/>}/>
         <Route strict path='/login' element={<Login/>}/>
         <Route strict path='/register' element={<Register/>}/>
+        <Route strict path='/order' element={<Order/>}/>
     </Routes>
   )
 }
