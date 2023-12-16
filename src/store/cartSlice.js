@@ -5,9 +5,14 @@ const initialState = {
     totalQuantity: 0,
 }
 
+const loadCartFromStorage = () => {
+    const cartData = localStorage.getItem('cart');
+    return cartData ? JSON.parse(cartData) : initialState;
+  };
+
 const cartSlice = createSlice({
     name: "cart",
-    initialState,
+    initialState: loadCartFromStorage(),
     reducers:{
         addToCart(state, action){
             const newItem = action.payload;
@@ -27,6 +32,7 @@ const cartSlice = createSlice({
                 })
                 state.totalQuantity++
             }
+            localStorage.setItem('cart', JSON.stringify(state));
         },
         removeFromCart(state,action){
             const id = action.payload;
