@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
@@ -27,8 +26,6 @@ export const Cart = () => {
     products: productsArray,
   };
 
-  console.log(requestBody);
-
   //Checkout
   const handleClick = async e =>{
     e.preventDefault();
@@ -40,13 +37,16 @@ export const Cart = () => {
           headers:{
             "content-type":"application/json",
           },
-          body: JSON.stringify(requestBody)
+          body: JSON.stringify(requestBody),
         })
+        console.log(JSON.stringify(requestBody));
+        console.log(res.status);
         const result = await res.json()
         if(!res.ok){
           return alert(result.message)
         }
         navigate("/order");
+        removeAll();
     } catch (err) {
       alert(err.message)
     }
@@ -65,12 +65,18 @@ export const Cart = () => {
     dispatch(cartActions.removeAll(id))
   }
   
+  const removeAll = () =>{
+    dispatch(cartActions.removeAllProducts())
+  }
+
   let total = 0;
     const itemsLists = useSelector(state => state.cart.itemsList);
     itemsLists.forEach((item) => {
-      total += item.totalPrice      
+      total += item.totalPrice    
     });
-  
+
+  let totalPlusShipping = total + 10;
+
   return (
     <div className='max-w-[1640px] mx-auto p-4 bg-gray-100'>
       <div className="container mx-auto mt-10">
@@ -87,24 +93,23 @@ export const Cart = () => {
                   <h3 className="text-center">Quantity</h3>
                   <h3 className="text-center">Price</h3>
               </div>
-              {cartItems.map((item) => (
-                  <div className="flex items-center justify-around hover:bg-gray-100 -mx-8 px-6 py-5">
+              {cartItems.map((item, index) => (
+                  <div className="flex items-center justify-around hover:bg-gray-100 -mx-8 px-6 py-5" key={index}>
                       <div className="flex w-2/5">
                           <div className="w-20">
                             <img className="h-24 w-20 object-cover" src={item.image} alt="product"/>
                           </div>
                           <div className="flex flex-col justify-between ml-4 flex-grow">
                               <span className="font-bold text-sm">{item.name}</span>
-                              <span className="text-xs">{item.category}</span>
                               <span className="remove" onClick={(e)=>remove(item.id)}>Remove</span>
                           </div>      
                       </div>
                       <div className="flex md:justify-between items-center w-1/4 pl-6 md:pl-0">
-                        <AiOutlineMinus onClick={(e) => decCartItems(item.id)}/>
+                        <AiOutlineMinus onClick={() => decCartItems(item.id)}/>
                               <span className="mx-2 w-3">{item.quantity}</span>
-                        <AiOutlinePlus onClick={(e) => incCartItems(item.id, item.exactPrice)}/>
+                        <AiOutlinePlus onClick={() => incCartItems(item.id, item.price)}/>
                       </div>
-                      <span className="text-center w-1/3 font-semibold text-sm">$ {item.exactPrice}</span>
+                      <span className="text-center w-1/3 font-semibold text-sm">$ {item.price}</span>
                   </div>)
                 )}
               <a href="/" className="formRedirect mt-10">
@@ -132,7 +137,7 @@ export const Cart = () => {
               <div className="border-t mt-8">
                 <div className="flex justify-between font-semibold text-sm uppercase py-6">
                   <span>Total cost</span>
-                  <span>$ {total}</span>
+                  <span>$ {totalPlusShipping}</span>
                 </div>
                 <button className="buttonBlack" onClick={handleClick}>Checkout</button>
               </div>

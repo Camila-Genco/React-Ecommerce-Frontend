@@ -8,7 +8,7 @@ import { Modal } from './Modal.js'
 import useFetch from '../hooks/useFetch.js'
 
 export const Food = () => {
-    const {data, loading, error} = useFetch(`${BASE_URL}products`);
+    const {data, loading} = useFetch(`${BASE_URL}products`);
     const [foods, setFoods] = useState([]);
     const [selectedFood, setSelectedFood] = useState(null);
     const [showModal, setShowModal] = useState(false);
@@ -76,7 +76,8 @@ export const Food = () => {
         </div>
 
         <div className='grid grid-cols-2 lg:grid-cols-4 gap-6 pt-4'>
-            {filteredFoods.map((item, index) => (
+            {loading? "Loading..." : 
+            filteredFoods.map((item, index) => (
                 <div key={index} className='foodItem'>
                     <img src={item.img} alt={item.img} className='w-full h-[200px] object-cover rounded-t-lg'/>
                     <div className='flex justify-between px-2 py-4'>

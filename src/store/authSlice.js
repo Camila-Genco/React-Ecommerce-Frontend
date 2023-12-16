@@ -17,10 +17,11 @@ const authSlice = createSlice({
       state.error = null;
     },
     loginSuccess: (state, action) => {
-        state.token = action.payload.token;
+      state.token = action.payload.token;
       state.user = action.payload.user;
       state.loading = false;
       state.error = null;
+      localStorage.setItem('user', JSON.stringify(action.payload.user));
     },
     loginFailure: (state, action) => {
       state.user = null;
@@ -36,6 +37,8 @@ const authSlice = createSlice({
       state.user = null;
       state.loading = false;
       state.error = null;
+
+      localStorage.removeItem('user');
     },
   },
 });

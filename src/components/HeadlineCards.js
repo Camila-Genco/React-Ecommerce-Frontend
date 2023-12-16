@@ -1,4 +1,7 @@
 import React from 'react'
+import img1 from "../assets/images/pexels-photo-3186654.jpeg"
+import img2 from "../assets/images/pexels-photo-2955819.jpeg"
+import img3 from "../assets/images/pexels-photo-376464.jpeg"
 
 export const HeadlineCards = () => {
   return (
@@ -9,7 +12,7 @@ export const HeadlineCards = () => {
                 <span>Delivered to Your Doorstep</span>
                 <button>Order Now</button>
             </div>
-            <img className='cardImg' src='https://images.pexels.com/photos/3186654/pexels-photo-3186654.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt=''/>
+            <img className='cardImg' src={img1} alt=''/>
         </div>
         <div className='rounded-xl relative'>
             <div className='card'>
@@ -17,7 +20,7 @@ export const HeadlineCards = () => {
                 <span>Added Daily</span>
                 <button>Order Now</button>
             </div>
-            <img className='cardImg' src='https://images.pexels.com/photos/2955819/pexels-photo-2955819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt=''/>
+            <img className='cardImg' src={img2} alt=''/>
         </div>
         <div className='rounded-xl relative'>
             <div className='card'>
@@ -25,7 +28,7 @@ export const HeadlineCards = () => {
                 <span>Select Your Tasty Treat</span>
                 <button>Order Now</button>
             </div>
-            <img className='cardImg' src='https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' alt=''/>
+            <img className='cardImg' src={img3} alt=''/>
         </div>
     </div>
   )
