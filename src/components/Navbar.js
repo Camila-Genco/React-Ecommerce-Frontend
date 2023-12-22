@@ -30,7 +30,7 @@ export const Navbar = () => {
                 <AiOutlineMenu size={20} className='text-white cursor-pointer'/>
             </div>
             {/*Restaurant logo*/}
-            <h1 className='text-white cursor-pointer' onClick={()=> navigate("/")}>Delish<span className='text-orange-500'>Dash</span></h1>
+            <div className='brand text-white mt-2' onClick={()=> navigate("/")}>Delish<span className='text-orange-500'>Dash</span></div>
             {/*Delivery toggle*/}
             <div className='hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
                 <p className={`option ${isDeliverySelected ? 'selected'  : ''}`} onClick={() => setIsDeliverySelected(!isDeliverySelected)}>Delivery</p>
@@ -39,7 +39,7 @@ export const Navbar = () => {
         </div>
         
         {/*Search bar*/}
-        <div className='bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[400px] lg:w-[500px]'>
+        <div className='bg-gray-200 rounded-full flex items-center px-2 w-[200px] sm:w-[360px] lg:w-[500px]'>
            <AiOutlineSearch size={20}/> 
            <input className='bg-transparent p-2 w-full focus:outline-none' type='text' placeholder='Search'/>
         </div>
