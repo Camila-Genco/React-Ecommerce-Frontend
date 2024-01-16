@@ -15,16 +15,19 @@ This application showcases a responsive, fully-functional food E-commerce websit
 Here are screenshots that show the E-commerce demo application in use.
 
 **Home Page**
-//
+![e-commerce-home (1)](https://github.com/Camila-Genco/e-commerce/assets/98172802/9d701cb8-e411-4346-a98a-8390a763fcb0)
+![e-commerce-menu](https://github.com/Camila-Genco/e-commerce/assets/98172802/d2d1c416-b70a-4dd9-b67a-2a7cb5e0b38d)
 
 **Product Detail**
-//
+![ecommerce-product-detail](https://github.com/Camila-Genco/e-commerce/assets/98172802/e5a9de84-f43f-4998-b0e7-18a45c9d1c85)
 
 **Cart and Checkout Page**
-//
+![e-commerce-cart](https://github.com/Camila-Genco/e-commerce/assets/98172802/50df954e-2213-46a1-9941-e9c6e4609c49)
 
 **Login/Sign Up Page**
-//
+![e-commerce-login](https://github.com/Camila-Genco/e-commerce/assets/98172802/fa4a9485-896a-49ed-a728-10f7b9f86272)
+![e-commerce-sign](https://github.com/Camila-Genco/e-commerce/assets/98172802/531a6be5-6379-45e2-8b00-2d3a775c2451)
+
 
 ### Project Overview
 - **Backend (Node.js & Express):** Handles data retrieval from PostgreSQL and serves API endpoints.
@@ -38,7 +41,7 @@ Here are screenshots that show the E-commerce demo application in use.
 - **src/services**: Backend services and API calls.
 - **public**: Static assets like images.
 
-## Dependencies
+### Dependencies
 
 - [React Router](https://www.npmjs.com/package/react-router)
 - [Redux Toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
