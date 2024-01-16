@@ -68,7 +68,7 @@ Here are screenshots that show the E-commerce demo application in use.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Camila-Genco/ExpenseTracker.git your-project-name
+   git clone https://github.com/Camila-Genco/e-commerce.git your-project-name
    
 2. Navigate to the project directory:
 
