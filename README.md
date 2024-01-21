@@ -1,7 +1,9 @@
-# E-Commerce 🛒🛍️💳
-> An app build with React and PostgreSQL
+# E-Commerce Frontend 🛒🛍️💳
+> An app build with React
 
-This application showcases a responsive, fully-functional food E-commerce website built using React, Tailwind CSS, PostgreSQL, Express.js and Node.js.
+This repository contains the frontend of a fullstack E-commerce application built using React, Tailwind CSS, PostgreSQL, Express.js, and Node.js. The complete project follows a decoupled architecture and includes both the frontend and backend components, creating a responsive and fully-functional food E-commerce website.
+
+For the backend code and documentation, please refer to the [E-Commerce Backend Repository](https://github.com/Camila-Genco/store.git). The backend is responsible for handling business logic, data processing, and storage.
 
 ### Features
 - **Product Showcase:** Browse a variety of products loaded from a PostgreSQL database.
@@ -38,7 +40,6 @@ Here are screenshots that show the E-commerce demo application in use.
 ### Project Structure
 - **src/components:**  React components for different sections of the application.
 - **src/pages:** Separate pages for routing and navigation.
-- **src/services**: Backend services and API calls.
 - **public**: Static assets like images.
 
 ### Dependencies
@@ -46,14 +47,7 @@ Here are screenshots that show the E-commerce demo application in use.
 - [React Router](https://www.npmjs.com/package/react-router)
 - [Redux Toolkit](https://www.npmjs.com/package/@reduxjs/toolkit)
 - [React Icons](https://www.npmjs.com/package/react-icons)
-- [Express](https://www.npmjs.com/package/express)
-- [Sequelize](https://www.npmjs.com/package/sequelize)
-- [node-postgres](https://node-postgres.com/)
-- [BCrypt](https://www.npmjs.com/package/bcrypt)
-- [dotend](https://www.npmjs.com/package/dotenv)
 - [Tailwind CSS](https://tailwindcss.com/docs/installation)
-- [docker-compose](https://www.npmjs.com/package/docker-compose)
-
 
 ## Getting Started
 
@@ -80,7 +74,9 @@ Here are screenshots that show the E-commerce demo application in use.
    ```bash
    npm install
 
-4. Start the application:
+4. Configure the connection to the backend (if applicable).
+
+5. Start the application:
 
    ```bash
    npm start
