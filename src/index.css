@@ -76,7 +76,10 @@
     @apply px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-color
   }
   .title {
-    @apply text-primary-color font-bold text-4xl text-center pb-4
+    @apply text-4xl text-center text-primary-color font-bold pb-4
+  }
+  .subtitle {
+    @apply text-center text-sm font-normal text-orange-500
   }
   .card {
     @apply absolute w-full h-full bg-black/50 rounded-xl text-white px-4

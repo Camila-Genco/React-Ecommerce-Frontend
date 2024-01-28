@@ -53,7 +53,8 @@ export const Food = () => {
 
   return (
     <div className='max-w-[1640] m-auto px-4 py-12'>
-        <h1 className='title'>Top Rated Menus</h1>
+        <p className='subtitle'>Our Menu</p>
+        <h1 className='title'>Top Rated Products</h1>
         <div className='flex flex-col lg:flex-row justify-between'>
             <div>
                 <p className='font-bold text-gray-700 mx-2'>Filter by Type</p>

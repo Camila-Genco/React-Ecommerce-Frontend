@@ -30,7 +30,7 @@ export const Navbar = () => {
                 <AiOutlineMenu size={20} className='text-white cursor-pointer'/>
             </div>
             {/*Restaurant logo*/}
-            <div className='brand text-white mt-2' onClick={()=> navigate("/")}>Delish<span className='text-orange-500'>Dash</span></div>
+            <div className='brand text-white' onClick={()=> navigate("/")}>Delish<span className='text-orange-500'>Dash</span></div>
             {/*Delivery toggle*/}
             <div className='hidden lg:flex items-center bg-gray-200 rounded-full p-1 text-[14px]'>
                 <p className={`option ${isDeliverySelected ? 'selected'  : ''}`} onClick={() => setIsDeliverySelected(!isDeliverySelected)}>Delivery</p>

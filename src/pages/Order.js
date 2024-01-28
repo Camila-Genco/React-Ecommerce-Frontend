@@ -7,7 +7,7 @@ export const Order = () => {
         <div className=''>
             <div className='flex flex-col gap-4 items-center md:max-w-[400px]'>
                 <BsFillCartCheckFill className='text-orange-500' size={40} />
-                <h2>You order has been succesfully processed!</h2>
+                <h2 className='text-center'>You order has been succesfully processed!</h2>
                 <p className='text-center text-gray-800'>
                     Thank you for shopping with us. Your order is being prepared and will be delivered soon!
                 </p>

@@ -16,8 +16,8 @@ export const Footer = () => {
         </div>
         <div className=' text-white text-sm flex justify-center gap-2'>
             <p>DelishDash Restaurant |</p> 
-            <p>76 Avenue, Houston, Texas |</p>
-            <p>Telephone: +1 000 000 |</p>
+            <p>xx Avenue, Houston, Texas |</p>
+            <p>Telephone: +1 xxx xxx |</p>
         </div>
         <p className='text-sm text-gray-600 py-3 pb-14'>Copyright &copy; 2023. All rigts reserved.</p>
         <div className='location'>
